@@ -43,3 +43,16 @@ I added the following magic that transforms packagereferences into projectrefere
 </Project>
 
 ```
+
+Inspired by [dotnet/sdk#1151](https://github.com/dotnet/sdk/issues/1151)
+Did some msbuild black magic. It works by:
+Get All PackageReference
+-> Tag if Name (%(Identity)) starts with MyNamespace
+-> Filter ones that start with MyNamespace
+-> Add as ProjectReference
+-> Remove PackageReference.
+
+Some extra documentation needed to understand what's happening:
+https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild-transforms?view=vs-2022
+https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild-well-known-item-metadata?view=vs-2022
+https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild-conditions?view=vs-2022
